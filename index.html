@@ -12,28 +12,96 @@
   <!-- 🌗 Tombol Dark/Light Mode -->
   <button class="theme-toggle" onclick="toggleTheme()">🌗</button>
 
-  <div class="frame-wrapper">
-    <div class="content-box">
+  <!-- =======================
+       SECTION 1 — MENU UTAMA
+       ======================= -->
+  <section id="home" class="page-section active">
+    <div class="frame-wrapper">
+      <div class="content-box">
 
-      <div class="left-side">
-        <img src="book.jpg" alt="Planner" />
-      </div>
-
-      <div class="right-side">
-        <h1 class="title">Menu Planner Reminder</h1>
-
-        <div class="menu-btns">
-          <button onclick="window.location.href='indexreminder2.html'">📚 Jadwal Sekolah</button>
-          <button onclick="window.location.href='indexreminder3.html'">📝 Catatan Harian</button>
-          <button onclick="window.location.href='indexreminder4.html'">🔔 Pengingat</button>
+        <div class="left-side">
+          <img src="book.jpg" alt="Planner" />
         </div>
+
+        <div class="right-side">
+          <h1 class="title">Menu Planner Reminder</h1>
+
+          <div class="menu-btns">
+            <button onclick="showPage('jadwal')">📚 Jadwal Sekolah</button>
+            <button onclick="showPage('catatan')">📝 Catatan Harian</button>
+            <button onclick="showPage('pengingat')">🔔 Pengingat</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================
+       SECTION 2 — JADWAL SEKOLAH
+       ======================= -->
+  <section id="jadwal" class="page-section">
+    <div class="schedule-container">
+      <h1>📚 Jadwal Sekolah</h1>
+
+      <button class="back-btn" onclick="showPage('home')">← Kembali</button>
+
+      <table class="schedule-table">
+        <tr><th>Hari</th><th>Mata Pelajaran</th></tr>
+        <tr><td>Senin</td><td>...</td></tr>
+        <tr><td>Selasa</td><td>...</td></tr>
+        <tr><td>Rabu</td><td>...</td></tr>
+        <tr><td>Kamis</td><td>...</td></tr>
+        <tr><td>Jumat</td><td>...</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- =======================
+       SECTION 3 — CATATAN HARIAN
+       ======================= -->
+  <section id="catatan" class="page-section">
+    <div class="notes-container">
+      <h1>📝 Catatan Harian</h1>
+
+      <button class="back-btn" onclick="showPage('home')">← Kembali</button>
+
+      <textarea class="note-area" placeholder="Tulis catatanmu di sini..."></textarea>
+    </div>
+  </section>
+
+  <!-- =======================
+       SECTION 4 — PENGINGAT
+       ======================= -->
+  <section id="pengingat" class="page-section">
+    <div class="notify-container">
+      <h1>🔔 Pengingat</h1>
+
+      <button class="back-btn" onclick="showPage('home')">← Kembali</button>
+
+      <div class="reminder-box">
+        <input type="time" id="alarmTime">
+        <button onclick="setAlarm()">Set Alarm</button>
       </div>
 
+      <audio id="alarmSound" src="alaramp.mp3"></audio>
     </div>
-  </div>
+  </section>
 
+  <!-- =======================
+        JAVASCRIPT PAGE SYSTEM
+       ======================= -->
   <script>
-    // 🌗 Dark Light Mode
+    /* GANTI HALAMAN */
+    function showPage(pageId) {
+      document.querySelectorAll(".page-section").forEach(sec => {
+        sec.classList.remove("active");
+      });
+      document.getElementById(pageId).classList.add("active");
+      window.scrollTo(0, 0);
+    }
+
+    /* DARK MODE */
     function toggleTheme() {
       document.body.classList.toggle("dark");
       localStorage.setItem("theme",
@@ -41,12 +109,40 @@
       );
     }
 
-    // simpan tema
     if (localStorage.getItem("theme") === "dark") {
       document.body.classList.add("dark");
+    }
+
+    /* PENGINGAT */
+    let alarmTimeout;
+
+    function setAlarm() {
+      let time = document.getElementById("alarmTime").value;
+      if (!time) {
+        alert("Masukkan waktu alarm!");
+        return;
+      }
+
+      let now = new Date();
+      let alarm = new Date();
+
+      alarm.setHours(time.split(":")[0]);
+      alarm.setMinutes(time.split(":")[1]);
+      alarm.setSeconds(0);
+
+      if (alarm < now) alarm.setDate(alarm.getDate() + 1);
+
+      let diff = alarm - now;
+
+      clearTimeout(alarmTimeout);
+      alarmTimeout = setTimeout(() => {
+        document.getElementById("alarmSound").play();
+        alert("Waktu alarm!");
+      }, diff);
+
+      alert("Alarm disetel!");
     }
   </script>
 
 </body>
 </html>
-

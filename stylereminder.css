@@ -4,8 +4,11 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap");
 
-/* Body */
-body {
+/* =============================
+   📌 1. HALAMAN MENU (indexreminder.html)
+   ============================= */
+
+body.menu-page {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
@@ -18,8 +21,7 @@ body {
   background-size: 320px;
 }
 
-/* Overlay */
-body::before {
+body.menu-page::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -55,8 +57,8 @@ body::before {
 
 /* LEFT IMAGE */
 .left-side img {
-  width: 200px !important;
-  max-height: 200px !important;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
   border-radius: 20px;
   filter: drop-shadow(0 5px 8px rgba(0,0,0,0.15));
@@ -102,45 +104,21 @@ body::before {
   box-shadow: 0 6px 12px rgba(255, 140, 170, 0.45);
 }
 
-
-/* =========================================
-   🌙 DARK MODE STYLE
-   ========================================= */
-body.dark::before {
-  background: rgba(25, 20, 28, 0.55);
-  backdrop-filter: blur(2px);
-}
-
-body.dark {
+/* DARK MODE */
+body.menu-page.dark {
   background: url("leopard.jpg") repeat;
-  background-size: 320px;
-  color: #ffe6f2;
 }
 
-body.dark .content-box {
-  background: rgba(40, 35, 45, 0.65);
-  border: 2px solid rgba(255, 150, 190, 0.4);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+body.menu-page.dark::before {
+  background: rgba(25,20,28,0.55);
 }
 
-body.dark .title {
-  color: #ff9dc8;
-  text-shadow: 0 0 8px rgba(255, 150, 200, 0.4);
+body.menu-page.dark .content-box {
+  background: rgba(40,35,45,0.65);
+  border: 2px solid rgba(255,150,190,0.4);
 }
 
-body.dark .menu-btns button {
-  background: #ff7fb7;
-}
-
-body.dark .menu-btns button:hover {
-  background: #ff5a9e;
-  box-shadow: 0 6px 14px rgba(255, 120, 170, 0.35);
-}
-
-
-/* =========================================
-   🌗 TOMBOL MODE GELAP/TERANG
-   ========================================= */
+/* Toggle */
 .theme-toggle {
   position: fixed;
   top: 18px;
@@ -156,19 +134,13 @@ body.dark .menu-btns button:hover {
   transition: 0.25s;
 }
 
-.theme-toggle:hover {
-  transform: scale(1.08);
-}
+.theme-toggle:hover { transform: scale(1.08); }
 
-body.dark .theme-toggle {
-  background: #ff6aa7;
-}
+body.dark .theme-toggle { background: #ff6aa7; }
 
-
-
-/* =====================================================
+/* =========================================
    🎀 2. JADWAL SEKOLAH (indexreminder2.html)
-   ===================================================== */
+   ========================================= */
 
 body.schedule-page {
   font-family: "Poppins", sans-serif;
@@ -218,223 +190,30 @@ input, select {
   border-radius: 12px;
   border: 1px solid #d9b5c3;
   background: #fff;
-  font-size: 14px;
 }
-
-input:focus, select:focus {
-  border-color: #ff8ebb;
-  outline: none;
-  box-shadow: 0 0 5px rgba(255, 120, 150, 0.4);
-}
-
-/* Buttons */
-.add-btn, .clear-btn {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.add-btn { background: #ffb7d5; color: white; }
-.add-btn:hover { background: #ff8ebb; }
-
-.clear-btn { background: #ffe3ed; color: #c45a7a; }
-.clear-btn:hover { background: #ffdae9; }
 
 /* Grid Hari */
 .days-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 20px;
-  justify-content: end;
-  padding-right: 10px;
   margin-top: 10px;
 }
-
-.day-section {
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: 18px;
-  padding: 12px;
-  border: 2px solid rgba(255, 182, 193, 0.55);
-  box-shadow: 0 6px 14px rgba(255, 160, 176, 0.28);
-  min-height: 120px;
-}
-
-.day-section h2 {
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-  color: #d96391;
-  margin: 6px 0 12px;
-}
-
-.jadwal-item {
-  background: #ffe7f1;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-left: 4px solid #ff9cbc;
-}
-
-.del-btn {
-  background: #ffb3c9 !important;
-  cursor: pointer;
-  border: none;
-  padding: 6px 8px;
-  border-radius: 8px;
-}
-
-.del-btn:hover {
-  background: #ff8ebb !important;
-}
-
-/* Navigasi */
-.nav-buttons {
-  width: 100%;
-  margin-top: 35px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding-bottom: 40px;
-}
-
-.nav-btn {
-  padding: 12px 24px;
-  border-radius: 15px;
-  border: none;
-  background: #ffb7d5;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.25s;
-  font-size: 16px;
-}
-
-.nav-btn:hover {
-  background: #ff8ebb;
-  transform: translateY(-3px);
-}
-
 
 /* DARK MODE */
 body.schedule-page.dark::before {
   background: rgba(0,0,0,0.45);
 }
 
-body.schedule-page.dark .schedule-container,
-body.schedule-page.dark .day-section {
-  background: rgba(40, 40, 40, 0.75);
+body.schedule-page.dark .schedule-container {
+  background: rgba(40,40,40,0.75);
 }
 
-body.schedule-page.dark input,
-body.schedule-page.dark select {
-  background: #3a3a3a;
-  color: white;
-  border-color: #555;
-}
-
-body.schedule-page.dark .page-title {
-  color: #ffb7d5;
-}
-
-
-/* =====================================================
+/* =========================================
    🎀 3. CATATAN HARIAN (indexreminder3.html)
-   ===================================================== */
+   ========================================= */
 
 body.notes-page {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background-image: url('leopard.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #4a3b42;
-}
-
-body.notes-page.dark {
-  background-color: #1c1b1b;
-  color: #fce4f0;
-}
-
-/* Judul */
-.notes-container h1 {
-  font-family: "Great Vibes", cursive;
-  font-size: 3.6rem;
-  color: #ff4f9d;
-  text-shadow: 3px 3px 8px rgba(255, 95, 150, 0.4);
-  margin-bottom: 5px;
-}
-
-/* Textarea */
-textarea {
-  width: 100%;
-  height: 120px;
-  padding: 15px;
-  border-radius: 14px;
-  border: 2px solid #ffb3d6;
-  background: rgba(255, 240, 246, 0.7);
-}
-
-body.notes-page.dark textarea {
-  background: rgba(70, 60, 65, 0.6);
-  border-color: #ff8fc8;
-  color: #fff;
-}
-
-/* Tombol Simpan */
-#saveNoteBtn {
-  margin-top: 10px;
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 14px;
-  background: #ff7db5;
-  color: white;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#saveNoteBtn:hover {
-  background: #ff4c9d;
-}
-
-/* List Notes */
-#notesList li {
-  list-style: none;
-  background: rgba(255, 226, 232, 0.35);
-  border: 1.5px solid #ffc2d8;
-  padding: 12px 15px;
-  border-radius: 12px;
-  margin: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Tombol hapus */
-#notesList li button {
-  background: #ff4c9d;
-  border: none;
-  border-radius: 8px;
-  padding: 6px 10px;
-  color: white;
-  cursor: pointer;
-}
-
-
-/* =====================================================
-   🎀 4. PENGINGAT (indexreminder4.html)
-   ===================================================== */
-
-body.notify-page {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
@@ -442,43 +221,53 @@ body.notify-page {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  color: #4a3b42;
 }
 
-body.notify-page.dark {
-  background-color: #1a1919;
+/* Title */
+.notes-container h1 {
+  font-family: "Great Vibes", cursive;
+  font-size: 3.6rem;
+  color: #ff4f9d;
+  text-shadow: 3px 3px 8px rgba(255,95,150,0.4);
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 14px;
+  border: 2px solid #ffb3d6;
+  background: rgba(255,240,246,0.7);
+}
+
+/* Dark */
+body.notes-page.dark {
+  background-color: #1c1b1b;
   background-image: none;
+}
+
+/* =========================================
+   🎀 4. PENGINGAT (indexreminder4.html)
+   ========================================= */
+
+body.notify-page {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-image: url("leopard.jpg");
 }
 
 /* Container */
 .notify-container {
   background: rgba(255, 232, 240, 0.65);
-  margin: 40px auto;
   max-width: 600px;
   padding: 25px;
   border-radius: 22px;
-  border: 2px solid #ffb2d6;
-  backdrop-filter: blur(8px);
   text-align: center;
 }
 
-.notify-container h1 {
-  font-family: "Great Vibes", cursive;
-  font-size: 3.6rem;
-  color: #ff4f9d;
-  margin-bottom: 10px;
-}
-
-#activateBtn {
-  background: #ff7db5;
-  border: none;
-  padding: 14px 26px;
-  font-size: 1.2rem;
-  color: white;
-  border-radius: 18px;
-  cursor: pointer;
-}
-
-body.dark .notify-container {
-  background: rgba(60, 50, 60, 0.55);
-  border-color: #ff8fc8;
+/* Dark */
+body.notify-page.dark {
+  background-color: #1a1919;
+  background-image: none;
 }
